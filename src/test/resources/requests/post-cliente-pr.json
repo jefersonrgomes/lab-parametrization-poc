@@ -1,0 +1,10 @@
+{
+    "clientes": 
+        {
+            "nome": "João da Silva",
+            "email": "joao@email.com",
+            "telefone": "(11) 91234-5678",
+            "estado": "PR"
+        }
+    
+}

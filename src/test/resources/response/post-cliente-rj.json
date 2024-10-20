@@ -1,0 +1,17 @@
+{
+	"clientes": {
+		"nome": "Jo\u00E3o da Silva",
+		"email": "joao@email.com",
+		"telefone": "(11) 91234-5678",
+		"estado": "RJ"
+	},
+	"endereco": {
+		"rua": "Avenida Atl\u00E2ntica",
+		"numero": 456,
+		"cidade": "Rio de Janeiro",
+		"estado": "RJ",
+		"pr\u00E9dio": "Edif\u00EDcio Mar",
+		"andar": 10,
+		"filial": "Filial Copacabana"
+	}
+}

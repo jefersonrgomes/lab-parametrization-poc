@@ -1,0 +1,17 @@
+{
+	"clientes": {
+		"nome": "Jo\u00E3o da Silva",
+		"email": "joao@email.com",
+		"telefone": "(11) 91234-5678",
+		"estado": ""
+	},
+	"endereco": {
+		"rua": "Rua das Flores",
+		"numero": 123,
+		"cidade": "S\u00E3o Paulo",
+		"estado": "SP",
+		"pr\u00E9dio": "Edif\u00EDcio Central",
+		"andar": 5,
+		"filial": "Matriz"
+	}
+}

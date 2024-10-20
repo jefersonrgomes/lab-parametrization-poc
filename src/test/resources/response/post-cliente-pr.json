@@ -1,0 +1,17 @@
+{
+	"clientes": {
+		"nome": "Jo\u00E3o da Silva",
+		"email": "joao@email.com",
+		"telefone": "(11) 91234-5678",
+		"estado": "PR"
+	},
+	"endereco": {
+		"rua": "Rua XV de Novembro",
+		"numero": 101,
+		"cidade": "Curitiba",
+		"estado": "PR",
+		"pr\u00E9dio": "Edif\u00EDcio Curitiba",
+		"andar": 7,
+		"filial": "Filial Batel"
+	}
+}

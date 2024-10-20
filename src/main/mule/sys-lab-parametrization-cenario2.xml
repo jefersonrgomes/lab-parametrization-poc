@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config_cenario2" doc:name="HTTP Listener config" doc:id="5207649e-5294-4c40-9dd9-276f40242098" basePath="/api" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<flow name="sys-lab-parametrization-cenario2"
+		doc:id="0b46f7e8-9ebe-4464-85af-de04491ea6dd" initialState="started">
+		<http:listener doc:name="Listener"
+			doc:id="00225bb6-7d4a-492c-9b5d-d50e7617ae52" path="/cenario2"
+			config-ref="HTTP_Listener_config_cenario2" />
+		<set-variable value='#[payload.clientes.estado]'
+			doc:name="accountType" doc:id="09b0244c-605d-4c4c-84e9-6298bb98e4d3"
+			variableName="accountType" />
+		<choice doc:name="Check account type"
+			doc:id="14f63239-08a9-493c-a099-630ee4aab16e">
+			<when expression='#[vars.accountType == "SP"]'>
+				<flow-ref doc:name="accountType_sp"
+					doc:id="5c2ca11b-0fdd-4697-b6e1-de69fdc5001e" name="accountType_sp" />
+			</when>
+			<when expression='#[vars.accountType == "MG"]'>
+				<flow-ref doc:name="accountType_mg"
+					doc:id="31f09c44-a2d3-4c3e-8926-338bd11b2f90" name="accountType_mg" />
+			</when>
+			<when expression='#[vars.accountType == "PR"]'>
+				<flow-ref doc:name="accountType_pr"
+					doc:id="4dc54866-5103-4592-9748-52039bd6c407" name="accountType_pr" />
+			</when>
+			<when expression='#[vars.accountType == "RJ"]'>
+				<flow-ref doc:name="accountType_jr"
+					doc:id="8786165f-30d3-44ee-b7ef-c97b8f09cf90" name="accountType_rj" />
+			</when>
+			<otherwise>
+				<ee:transform doc:name="filial_SP" doc:id="96a2b839-e2db-4464-9d30-38291f5faf02" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+var filial = (
+	"endereco": {
+	"rua": "Rua das Flores",
+	"numero": 123,
+	"cidade": "São Paulo",
+	"estado": "SP",
+	"prédio": "Edifício Central",
+	"andar": 5,
+	"filial": "Matriz"
+})
+output application/json
+---
+payload ++ filial
+]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</otherwise>
+		</choice>
+	</flow>
+	<sub-flow name="accountType_sp"
+		doc:id="a9eb0412-b369-4748-a5ce-3238195cd15b">
+		<ee:transform doc:name="filial_SP" doc:id="d4276991-9a87-4319-bdae-375b92d16ad6" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+var filial = (
+	"endereco": {
+	"rua": "Rua das Flores",
+	"numero": 123,
+	"cidade": "São Paulo",
+	"estado": "SP",
+	"prédio": "Edifício Central",
+	"andar": 5,
+	"filial": "Matriz"
+})
+output application/json
+---
+payload ++ filial
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</sub-flow>
+	<sub-flow name="accountType_rj"
+		doc:id="bdbb2114-17da-4cab-ba2c-f8eec628af57">
+		<ee:transform doc:name="filial_RJ"
+			doc:id="bfe45b47-6545-462b-9413-732b4b820153">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+var filial = ({
+	"endereco": {
+		"rua": "Avenida Atlântica",
+		"numero": 456,
+		"cidade": "Rio de Janeiro",
+		"estado": "RJ",
+		"prédio": "Edifício Mar",
+		"andar": 10,
+		"filial": "Filial Copacabana"
+	}
+})
+output application/json
+---
+payload ++ filial
+
+    
+    
+    
+    ]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</sub-flow>
+	<sub-flow name="accountType_pr"
+		doc:id="1ce16632-9ded-4556-ab39-6a863315d879">
+		<ee:transform doc:name="filial_PR"
+			doc:id="98da3a97-721a-4609-83bf-51688eb4ce9f">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+var filial = ({
+	"endereco": {
+		"rua": "Rua XV de Novembro",
+		"numero": 101,
+		"cidade": "Curitiba",
+		"estado": "PR",
+		"prédio": "Edifício Curitiba",
+		"andar": 7,
+		"filial": "Filial Batel"
+	}
+})
+output application/json
+---
+payload ++ filial
+	
+	
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</sub-flow>
+	<sub-flow name="accountType_mg"
+		doc:id="72f16e0f-0450-4331-877f-09861e44a74c">
+		<ee:transform doc:name="filial_MG"
+			doc:id="920febea-9855-413c-8303-1cb5984254e2">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+var filial = ({
+	"endereco": {
+		"rua": "Praça da Liberdade",
+		"numero": 789,
+		"cidade": "Belo Horizonte",
+		"estado": "MG",
+		"prédio": "Edifício Liberdade",
+		"andar": 3,
+		"filial": "Filial Centro"
+	}
+})
+output application/json
+---
+payload ++ filial
+
+
+	
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</sub-flow>
+</mule>

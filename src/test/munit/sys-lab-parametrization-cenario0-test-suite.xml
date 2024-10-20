@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+	xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config
+		name="sys-lab-parametrization-dev-test-suite.xml"
+		doc:id="6516ce37-472b-48af-a536-64c9f5deac81">
+
+
+
+	</munit:config>
+
+	<munit:test
+		name="cadastro-cliente-estado-default"
+		doc:id="e02243ef-7d50-4106-8763-1435f9dbe841" description="Test">
+		<munit:execution>
+			<set-payload value="#[output application/json --- readUrl('classpath://requests/post-cliente-default.json')]" doc:name="read-request-default-file"
+				doc:id="d0205807-1d82-4729-94b3-3f3a28e78b42" />
+			<flow-ref
+				doc:name="Flow-ref to sys-lab-parametrization-devFlow"
+				doc:id="91b113a5-b779-4495-bafd-1f6078638e43"
+				name="sys-lab-parametrization-cenario2" />
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-equals
+				doc:name="read-response-default-file"
+				doc:id="283a0b51-2bf3-4286-bfcd-e15fd0ac2c93"
+				actual="#[payload]" expected='#[%dw 2.0&#10;output application/json&#10;---&#10;readUrl("classpath://response/post-cliente-default.json")]'
+				message="Payload does not Matched" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="cadastro-cliente-estado-sp" doc:id="38ce1f91-22c7-49bb-8818-c2798808b5d5" description="Test" >
+		<munit:execution >
+			<set-payload value="#[output application/json --- readUrl('classpath://requests/post-cliente-sp.json')]" doc:name="read-request-sp-file" doc:id="e355f820-3560-48f3-a5e7-75af42e49a68" />
+			<flow-ref doc:name="Flow-ref to sys-lab-parametrization-devFlow" doc:id="9e987112-c34c-49ff-877b-ea4f23b7bc8d" name="sys-lab-parametrization-cenario2" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="read-response-sp-file" doc:id="ba8f092b-badf-4c6b-b7f7-987064b6a74d" actual="#[payload]" expected='#[%dw 2.0&#10;output application/json&#10;---&#10;readUrl("classpath://response/post-cliente-sp.json")]' message="Payload does not Matched" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="cadastro-cliente-estado-rj" doc:id="3ea0517d-0723-4287-b18d-c8cd1c137d31" description="Test" >
+		<munit:execution >
+			<set-payload value="#[output application/json --- readUrl('classpath://requests/post-cliente-rj.json')]" doc:name="read-request-rj-file" doc:id="72f4825c-dba9-43ae-adbb-e3cc672e9e18" />
+			<flow-ref doc:name="Flow-ref to sys-lab-parametrization-devFlow" doc:id="31cdf625-8a88-4bd4-90e7-11519f962a99" name="sys-lab-parametrization-cenario2" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="read-response-rj-file" doc:id="04ddcca2-9030-46ab-a7a7-172fdd1a7d41" actual="#[payload]" expected='#[%dw 2.0&#10;output application/json&#10;---&#10;readUrl("classpath://response/post-cliente-rj.json")]' message="Payload does not Matched" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="cadastro-cliente-estado-pr" doc:id="308e36be-b45e-4917-825f-ef0f063907a3" description="Test" >
+		<munit:execution >
+			<set-payload value="#[output application/json --- readUrl('classpath://requests/post-cliente-pr.json')]" doc:name="read-request-pr-file" doc:id="dfc0c110-07ab-4320-991c-a39a062be8c6" />
+			<flow-ref doc:name="Flow-ref to sys-lab-parametrization-devFlow" doc:id="620e5df3-4053-4299-a18c-a1526350fdd4" name="sys-lab-parametrization-cenario2" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="read-response-pr-file" doc:id="19bf5d75-34d4-41e5-bb1d-993e1d606412" actual="#[payload]" expected='#[%dw 2.0&#10;output application/json&#10;---&#10;readUrl("classpath://response/post-cliente-pr.json")]' message="Payload does not Matched" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="cadastro-cliente-estado-mg" doc:id="85c8e4a8-bb9e-4890-90bc-8788b754ebad" description="Test" >
+		<munit:execution >
+			<set-payload value="#[output application/json --- readUrl('classpath://requests/post-cliente-mg.json')]" doc:name="read-request-mg-file" doc:id="e2041268-c763-4b63-8632-7f9923667814" />
+			<flow-ref doc:name="Flow-ref to sys-lab-parametrization-devFlow" doc:id="d5031118-5236-4bfd-bfa0-04eb56d632b6" name="sys-lab-parametrization-cenario2" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="read-response-mg-file" doc:id="95838846-81cf-4575-a136-6297db8d054f" actual="#[payload]" expected='#[%dw 2.0&#10;output application/json&#10;---&#10;readUrl("classpath://response/post-cliente-mg.json")]' message="Payload does not Matched" />
+		</munit:validation>
+	</munit:test>
+</mule>

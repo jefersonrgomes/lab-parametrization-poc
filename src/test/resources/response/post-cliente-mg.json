@@ -1,0 +1,17 @@
+{
+	"clientes": {
+		"nome": "Jo\u00E3o da Silva",
+		"email": "joao@email.com",
+		"telefone": "(11) 91234-5678",
+		"estado": "MG"
+	},
+	"endereco": {
+		"rua": "Pra\u00E7a da Liberdade",
+		"numero": 789,
+		"cidade": "Belo Horizonte",
+		"estado": "MG",
+		"pr\u00E9dio": "Edif\u00EDcio Liberdade",
+		"andar": 3,
+		"filial": "Filial Centro"
+	}
+}

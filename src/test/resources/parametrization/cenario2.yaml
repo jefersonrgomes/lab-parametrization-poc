@@ -1,0 +1,19 @@
+cadastro-cliente-estado-sp:
+  request: "requests/post-cliente-sp.json"
+  response: "response/post-cliente-sp.json"  
+  
+cadastro-cliente-estado-rj:
+  request: "requests/post-cliente-rj.json"
+  response: "response/post-cliente-rj.json"  
+    
+cadastro-cliente-estado-mg:
+  request: "requests/post-cliente-mg.json"
+  response: "response/post-cliente-mg.json"  
+
+cadastro-cliente-estado-pr:
+  request: "requests/post-cliente-pr.json"
+  response: "response/post-cliente-pr.json"  
+
+cadastro-cliente-estado-default:
+  request: "requests/post-cliente-default.json"
+  response: "response/post-cliente-default.json"  

@@ -1,0 +1,4 @@
+%dw 2.0
+
+type auto_a9eb0412_b369_4748_a5ce_3238195cd15b_Output_Variables_accountType = Any
+

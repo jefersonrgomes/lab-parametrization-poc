@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+	xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config
+		name="sys-lab-parametrization-dev-test-suite.xml"
+		doc:id="6516ce37-472b-48af-a536-64c9f5deac81">
+		<munit:parameterizations >
+			<munit:parameterization name="cadastro-cliente-estado-sp" >
+				<munit:parameters >
+					<munit:parameter propertyName="input" value="#[output application/json --- readUrl('classpath://requests/post-cliente-sp.json')]" />
+					<munit:parameter propertyName="output" value="#[output application/json --- readUrl('classpath://response/post-cliente-sp.json')]" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="cadastro-cliente-estado-rj" >
+				<munit:parameters >
+					<munit:parameter propertyName="input" value="#[output application/json --- readUrl('classpath://requests/post-cliente-rj.json')]" />
+					<munit:parameter propertyName="output" value="#[output application/json --- readUrl('classpath://response/post-cliente-rj.json')]" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="cadastro-cliente-estado-mg" >
+				<munit:parameters >
+					<munit:parameter propertyName="input" value="#[output application/json --- readUrl('classpath://requests/post-cliente-mg.json')]" />
+					<munit:parameter propertyName="output" value="#[output application/json --- readUrl('classpath://response/post-cliente-mg.json')]" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="cadastro-cliente-estado-pr" >
+				<munit:parameters >
+					<munit:parameter propertyName="input" value="#[output application/json --- readUrl('classpath://requests/post-cliente-pr.json')]" />
+					<munit:parameter propertyName="output" value="#[output application/json --- readUrl('classpath://response/post-cliente-pr.json')]" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="cadastro-cliente-estado-default" >
+				<munit:parameters >
+					<munit:parameter propertyName="input" value="#[output application/json --- readUrl('classpath://requests/post-cliente-default.json')]" />
+					<munit:parameter propertyName="output" value="#[output application/json --- readUrl('classpath://response/post-cliente-default.json')]" />
+				</munit:parameters>
+			</munit:parameterization>
+		</munit:parameterizations>
+
+
+
+	</munit:config>
+
+	<munit:test
+		name="sys-lab-parametrization-cenario1-test-suite"
+		doc:id="e02243ef-7d50-4106-8763-1435f9dbe841" description="Test">
+		<munit:execution>
+			<set-payload value="${input}" doc:name="read-request-file"
+				doc:id="d0205807-1d82-4729-94b3-3f3a28e78b42" />
+			<flow-ref
+				doc:name="Flow-ref to sys-lab-parametrization-devFlow"
+				doc:id="91b113a5-b779-4495-bafd-1f6078638e43"
+				name="sys-lab-parametrization-cenario2" />
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-equals
+				doc:name="read-response-file"
+				doc:id="283a0b51-2bf3-4286-bfcd-e15fd0ac2c93"
+				actual="#[payload]" expected="${output}"
+				message="Payload does not Matched" />
+		</munit:validation>
+	</munit:test>
+</mule>

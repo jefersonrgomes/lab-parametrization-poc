@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="sys-lab-parametrization-cenario2-test-suite.xml" >
+		<munit:parameterizations file="parametrization\cenario2.yaml" />
+	</munit:config>
+	<munit:test name="sys-lab-parametrization-cenario2-test-suite-sys-lab-parametrization-cenario2Test" doc:id="4f0a9053-73e7-4c26-bfda-b8a5836b1d6b" description="Test">
+		<munit:execution >
+			<set-payload value='#[%dw 2.0&#10;var request = Mule::p("request")&#10;output application/json&#10;---&#10;readUrl("classpath://$(request)")]' doc:name="read-request-file" doc:id="e856182c-e044-4997-9f37-f6ac5bc80740" />
+			<flow-ref doc:name="Flow-ref to sys-lab-parametrization-cenario2" doc:id="dd0c59b2-d9a6-448c-a685-089be65fd426" name="sys-lab-parametrization-cenario2"/>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-equals doc:name="read-response-file" doc:id="cfaf3f35-5d55-4304-ab18-ce365e2a402b" actual="#[payload]" expected='#[%dw 2.0&#10;var response = Mule::p("response")&#10;output application/json&#10;---&#10;readUrl("classpath://$(response)")]' message="Sucesso parametrization definido no arquivo externo parametrization.yaml "/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
